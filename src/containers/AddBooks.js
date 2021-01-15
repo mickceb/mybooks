@@ -57,7 +57,7 @@ const AddBooks = ({ libraryData, addBook, deleteBook, deleteAll }) => {
     );
 
   const deleteAllBooksBtn = libraryData.length > 0 && (
-    <button className="btn btn-danger mt-4 mb-5" onClick={deleteAll()}>
+    <button className="btn btn-danger mt-4 mb-5" onClick={() => deleteAll()}>
       Effacer tous les livres
     </button>
   );
