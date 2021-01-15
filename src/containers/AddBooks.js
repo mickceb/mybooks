@@ -30,11 +30,28 @@ const AddBooks = () => {
               />
             </div>
             <div className="form-group">
-              <button className="btn btn-outline-secondary ml-3">
+              <button className="btn btn-outline-primary ml-3">
                 Ajoutez un livre
               </button>
             </div>
           </form>
+        </div>
+      </div>
+
+      <div className="container" style={{ minHeight: "200px" }}>
+        <div className="row">
+          <div className="col-md-12">
+            <ul className="list-group">
+              <li className="list-group-item list-group-item d-flex justify-content-between">
+                livres enregistré ici...
+              </li>
+            </ul>
+            <div className="d-flex justify-content-center">
+              <button className="btn btn-danger mt-4 mb-5">
+                Effacer tous les livres
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </main>
