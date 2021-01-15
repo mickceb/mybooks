@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addBook, deleteBook } from "../redux/actions/actionAddBooks";
+import {
+  addBook,
+  deleteBook,
+  deleteAllBooks,
+} from "../redux/actions/actionAddBooks";
 import FlipMove from "react-flip-move";
 
-const AddBooks = ({ libraryData, addBook, deleteBook }) => {
-  console.log(libraryData);
+const AddBooks = ({ libraryData, addBook, deleteBook, deleteAll }) => {
+  //console.log(libraryData);
 
   const initialState = {
     title: "",
@@ -21,10 +25,10 @@ const AddBooks = ({ libraryData, addBook, deleteBook }) => {
     setData(initialState);
   };
 
-  const displayBooks = (
-    <FlipMove>
-      {libraryData.length > 0 ? (
-        libraryData.map((item) => {
+  const displayBooks =
+    libraryData.length > 0 ? (
+      <FlipMove>
+        {libraryData.map((item) => {
           return (
             <li
               className="list-group-item list-group-item d-flex justify-content-between"
@@ -46,15 +50,14 @@ const AddBooks = ({ libraryData, addBook, deleteBook }) => {
               </span>
             </li>
           );
-        })
-      ) : (
-        <p className="text-center">Aucun livre à afficher...</p>
-      )}
-    </FlipMove>
-  );
+        })}
+      </FlipMove>
+    ) : (
+      <p className="text-center">Aucun livre à afficher...</p>
+    );
 
   const deleteAllBooksBtn = libraryData.length > 0 && (
-    <button className="btn btn-danger mt-4 mb-5">
+    <button className="btn btn-danger mt-4 mb-5" onClick={deleteAll()}>
       Effacer tous les livres
     </button>
   );
@@ -102,6 +105,7 @@ const AddBooks = ({ libraryData, addBook, deleteBook }) => {
           </form>
         </div>
       </div>
+
       <div className="container" style={{ minHeight: "200px" }}>
         <div className="row">
           <div className="col-md-12">
@@ -126,6 +130,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addBook: (param) => dispatch(addBook(param)),
     deleteBook: (id) => dispatch(deleteBook(id)),
+    deleteAll: () => dispatch(deleteAllBooks()),
   };
 };
 
