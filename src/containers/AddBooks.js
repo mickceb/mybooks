@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addBook } from "../redux/actions/actionAddBooks";
+import FlipMove from "react-flip-move";
 
 const AddBooks = ({ libraryData, addBook }) => {
   console.log(libraryData);
@@ -20,29 +21,32 @@ const AddBooks = ({ libraryData, addBook }) => {
     setData(initialState);
   };
 
-  const displayBooks =
-    libraryData.length > 0 ? (
-      libraryData.map((item) => {
-        return (
-          <li
-            className="list-group-item list-group-item d-flex justify-content-between"
-            key={item.id}
-          >
-            <span>
-              <strong>Titre: </strong>
-              {item.title}
-            </span>
-            <span>
-              <strong>Auteur: </strong>
-              {item.author}
-            </span>
-            <span className="btn btn-danger">X</span>
-          </li>
-        );
-      })
-    ) : (
-      <p className="text-center">Aucun livre à afficher...</p>
-    );
+  const displayBooks = (
+    <FlipMove>
+      {libraryData.length > 0 ? (
+        libraryData.map((item) => {
+          return (
+            <li
+              className="list-group-item list-group-item d-flex justify-content-between"
+              key={item.id}
+            >
+              <span>
+                <strong>Titre: </strong>
+                {item.title}
+              </span>
+              <span>
+                <strong>Auteur: </strong>
+                {item.author}
+              </span>
+              <span className="btn btn-danger">X</span>
+            </li>
+          );
+        })
+      ) : (
+        <p className="text-center">Aucun livre à afficher...</p>
+      )}
+    </FlipMove>
+  );
 
   const deleteAllBooksBtn = libraryData.length > 0 && (
     <button className="btn btn-danger mt-4 mb-5">
