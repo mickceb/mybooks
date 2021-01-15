@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addBook } from "../redux/actions/actionAddBooks";
 
@@ -41,10 +41,14 @@ const AddBooks = ({ libraryData, addBook }) => {
         );
       })
     ) : (
-      <li className="list-group-item list-group-item d-flex justify-content-between">
-        Aucun livre...
-      </li>
+      <p className="text-center">Aucun livre à afficher...</p>
     );
+
+  const deleteAllBooksBtn = libraryData.length > 0 && (
+    <button className="btn btn-danger mt-4 mb-5">
+      Effacer tous les livres
+    </button>
+  );
 
   return (
     <main role="main">
@@ -89,15 +93,12 @@ const AddBooks = ({ libraryData, addBook }) => {
           </form>
         </div>
       </div>
-
       <div className="container" style={{ minHeight: "200px" }}>
         <div className="row">
           <div className="col-md-12">
             <ul className="list-group">{displayBooks}</ul>
             <div className="d-flex justify-content-center">
-              <button className="btn btn-danger mt-4 mb-5">
-                Effacer tous les livres
-              </button>
+              {deleteAllBooksBtn}
             </div>
           </div>
         </div>
