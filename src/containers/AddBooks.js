@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { addBook } from "../redux/actions/actionAddBooks";
 
@@ -12,9 +12,6 @@ const AddBooks = ({ libraryData, addBook }) => {
 
   const [data, setData] = useState(initialState);
 
-  /* console.log(initialState);
-  console.log(data); */
-
   const handleSubmit = (e) => {
     e.preventDefault();
     addBook(data);
@@ -22,6 +19,32 @@ const AddBooks = ({ libraryData, addBook }) => {
     // reset input
     setData(initialState);
   };
+
+  const displayBooks =
+    libraryData.length > 0 ? (
+      libraryData.map((item) => {
+        return (
+          <li
+            className="list-group-item list-group-item d-flex justify-content-between"
+            key={item.id}
+          >
+            <span>
+              <strong>Titre: </strong>
+              {item.title}
+            </span>
+            <span>
+              <strong>Auteur: </strong>
+              {item.author}
+            </span>
+            <span className="btn btn-danger">X</span>
+          </li>
+        );
+      })
+    ) : (
+      <li className="list-group-item list-group-item d-flex justify-content-between">
+        Aucun livre...
+      </li>
+    );
 
   return (
     <main role="main">
@@ -70,11 +93,7 @@ const AddBooks = ({ libraryData, addBook }) => {
       <div className="container" style={{ minHeight: "200px" }}>
         <div className="row">
           <div className="col-md-12">
-            <ul className="list-group">
-              <li className="list-group-item list-group-item d-flex justify-content-between">
-                livres enregistré ici...
-              </li>
-            </ul>
+            <ul className="list-group">{displayBooks}</ul>
             <div className="d-flex justify-content-center">
               <button className="btn btn-danger mt-4 mb-5">
                 Effacer tous les livres
