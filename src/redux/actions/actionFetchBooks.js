@@ -27,7 +27,9 @@ const fetchBooksError = (message) => {
 
 const GOOGLE_API_KEY = "AIzaSyBSKmODgy0ado5JOAdDTWQ88a6xDpxCGMY";
 
-// const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+/* const GOOGLE_API_KEY = {
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+}; */
 
 console.log(GOOGLE_API_KEY);
 
