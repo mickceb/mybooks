@@ -4,6 +4,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import AddBooks from "./containers/AddBooks";
+import SearchBooks from "./containers/SearchBooks";
 
 function App() {
   return (
@@ -11,8 +12,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact patch="/" component={AddBooks} />
-        <Route patch="/search" component={} />
-        <Route patch="/search" component={} />
+        <Route patch="/search" component={Searchbooks} />
       </Switch>
       <Footer />
     </Router>
