@@ -25,7 +25,7 @@ const fetchBooksError = (message) => {
   };
 };
 
-const GOOGLE_API_KEY = "AIzaSyBSKmODgy0ado5JOAdDTWQ88a6xDpxCGMY";
+const GOOGLE_API_KEY = ""; // Add key
 
 /* const GOOGLE_API_KEY = {
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
