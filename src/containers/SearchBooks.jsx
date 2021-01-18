@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SearchBooks = () => {
+  const [title, setTitle] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(title);
+  };
+
   return (
     <main role="main">
       <div className="jumbotron jumbotron-fluid">
@@ -8,7 +15,10 @@ const SearchBooks = () => {
           <h1 className="display-4">BOOKS</h1>
           <p>Recherchez un livre dans Google</p>
 
-          <form className="form-inline justify-content-center">
+          <form
+            className="form-inline justify-content-center"
+            onSubmit={handleSubmit}
+          >
             <div className="form-group">
               <input
                 type="text"
@@ -17,6 +27,8 @@ const SearchBooks = () => {
                 className="form-control"
                 placeholder="Titre du livre..."
                 required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
 
