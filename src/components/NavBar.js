@@ -10,16 +10,15 @@ const NavBar = () => {
             MyBooks
           </a>
         </h4>
+        <nav className="btn-group">
+          <Link to="/" className="btn btn-light">
+            Accueil
+          </Link>
+          <Link to="/search" className="btn btn-light">
+            Rechercher
+          </Link>
+        </nav>
       </div>
-
-      <nav className="btn-group">
-        <Link to="/" className="btn btn-light">
-          Accueil
-        </Link>
-        <Link to="/search" className="btn btn-light">
-          Rechercher
-        </Link>
-      </nav>
     </header>
   );
 };
