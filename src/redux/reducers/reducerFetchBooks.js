@@ -14,10 +14,23 @@ const reducerFetchBooks = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_BOOKS_LOADING:
       return { ...state, isLoading: true };
-    /* case FETCH_BOOKS_SUCCESS:
-      return { ...state, isLoading: true };
+
+    case FETCH_BOOKS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        fetchedBooks: action.payload,
+        error: "",
+      };
+
     case FETCH_BOOKS_ERROR:
-      return { ...state }; */
+      return {
+        ...state,
+        isLoading: false,
+        fetchedBooks: [],
+        error: action.payload,
+      };
+
     default:
       return state;
   }
