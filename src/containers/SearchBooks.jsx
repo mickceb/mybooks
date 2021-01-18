@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBooks } from "../redux/actions/actionFetchBooks";
+import { addBook } from "../redux/actions/actionAddBooks";
 
 const SearchBooks = () => {
   const [title, setTitle] = useState("");
@@ -50,7 +51,12 @@ const SearchBooks = () => {
                   >
                     En savoir plus...
                   </a>
-                  <button className="btn btn-outline-secondary">
+                  <button
+                    className="btn btn-outline-secondary"
+                    onClick={() =>
+                      handleSave(book.volumeInfo.title, book.volumeInfo.authors)
+                    }
+                  >
                     Enregistrer
                   </button>
                 </div>
@@ -65,6 +71,11 @@ const SearchBooks = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchBooks(title));
+  };
+
+  const handleSave = (title, author) => {
+    const bookToSave = { title, author };
+    dispatch(addBook(bookToSave));
   };
 
   return (
