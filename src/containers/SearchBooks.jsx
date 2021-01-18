@@ -17,7 +17,9 @@ const SearchBooks = () => {
       </div>
     </div>
   ) : state.error !== "" ? (
-    <p>{state.error}</p>
+    <div className="alert alert-danger" role="alert">
+      {state.error}
+    </div>
   ) : (
     state.fetchedBooks.map((book) => {
       return (
