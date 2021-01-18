@@ -25,19 +25,14 @@ const fetchBooksError = (message) => {
   };
 };
 
-const url =
-  "https://www.googleapis.com/books/v1/volumes?q={TITRE}&key={KEY}&maxResults=20";
-
 export const fetchBooks = (title) => {
   return (dispatch) => {
     dispatch(fetchBooksLoading);
     axios
       .get(
-        `
-        
-        `
+        `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${process.env.REACT_APP_GOOGLE_API_KEY}&maxResults=20`
       )
-      .then(() => {})
-      .catch(() => {});
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
   };
 };
