@@ -1,7 +1,11 @@
 import React, { useState, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { fetchBooks } from "../redux/actions/actionFetchBooks";
 import { addBook } from "../redux/actions/actionAddBooks";
+
+toast.configure();
 
 const SearchBooks = () => {
   const [title, setTitle] = useState("");
@@ -76,6 +80,15 @@ const SearchBooks = () => {
   const handleSave = (title, author) => {
     const bookToSave = { title, author };
     dispatch(addBook(bookToSave));
+    toast.success(`Le livre "${title}" a bien été enregistré 👍`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+    });
   };
 
   return (
