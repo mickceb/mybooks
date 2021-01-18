@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBooks } from "../redux/actions/actionFetchBooks";
 
@@ -10,9 +10,58 @@ const SearchBooks = () => {
 
   console.log(state);
 
+  const displayFetchedBooks = state.isLoading ? (
+    <div className="d-flex justify-content-center">
+      <div className="spinner-border text-info" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </div>
+  ) : state.error !== "" ? (
+    <p>{state.error}</p>
+  ) : (
+    state.fetchedBooks.map((book) => {
+      return (
+        <Fragment>
+          <div className="card mt-3 mb-3" key={book.id}>
+            <div className="row no-gutters">
+              <div className="col-md-4">
+                {book.volumeInfo.hasOwnProperty("imageLinks") && (
+                  <img
+                    src={book.volumeInfo.imageLinks.thumbnail}
+                    alt={book.volumeInfo.title}
+                    className="card-img"
+                  />
+                )}
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <h5 className="card-title">{book.volumeInfo.title}</h5>
+                  <h6 className="card-subtitle mb-2">
+                    {book.volumeInfo.authors}
+                  </h6>
+                  <p className="card-text">{book.volumeInfo.description}</p>
+                  <a
+                    href={book.volumeInfo.previewLink}
+                    className="btn btn-outline-primary mr-2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    En savoir plus...
+                  </a>
+                  <button className="btn btn-outline-secondary">
+                    Enregistrer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Fragment>
+      );
+    })
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(title);
     dispatch(fetchBooks(title));
   };
 
@@ -50,23 +99,7 @@ const SearchBooks = () => {
       </div>
 
       <div className="container" style={{ minHeight: "200px" }}>
-        <div className="accordion">
-          <div className="card mb-2">
-            <div className="card-header"></div>
-            <div className="collapse" data-parent="accordion">
-              <div className="card-body">
-                {/* 
-          - Image
-          - Titre
-          - Auteur
-          - Description
-          - Btn plus d'info
-          - Btn enregistrer
-          */}
-              </div>
-            </div>
-          </div>
-        </div>
+        <div className="accordion">{displayFetchedBooks}</div>
       </div>
     </main>
   );
