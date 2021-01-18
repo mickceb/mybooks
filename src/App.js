@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
@@ -11,8 +11,8 @@ function App() {
     <Router>
       <NavBar />
       <Switch>
-        <Route exact patch="/" component={AddBooks} />
-        <Route patch="/search" component={Searchbooks} />
+        <Route exact path="/" component={AddBooks} />
+        <Route path="/search" component={SearchBooks} />
       </Switch>
       <Footer />
     </Router>
